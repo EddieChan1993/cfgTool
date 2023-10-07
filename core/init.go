@@ -6,5 +6,5 @@ import (
 )
 
 func initCore() {
-	RegIExcelThink(util.CfgConst, &excel.CfgConst{})
+	regIExcelThink(util.CfgConst, &excel.CfgConst{})
 }

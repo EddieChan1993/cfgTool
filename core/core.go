@@ -6,14 +6,14 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
-var AllExcelThinks = make(map[string]IExcelThink)
+var allExcelThinks = make(map[string]IExcelThink)
 
 type IExcelThink interface {
 	Think(excelFileName string, f *excelize.File) (goFileName string, err error)
 }
 
-func RegIExcelThink(regName string, obj IExcelThink) {
-	AllExcelThinks[regName] = obj
+func regIExcelThink(regName string, obj IExcelThink) {
+	allExcelThinks[regName] = obj
 }
 
 func RunCore() {
@@ -21,7 +21,7 @@ func RunCore() {
 	var err error
 	var path string
 	var fileName string
-	for cfgName, iThink := range AllExcelThinks {
+	for cfgName, iThink := range allExcelThinks {
 		var f *excelize.File
 		path = fmt.Sprint(util.ExcelPath + "/" + cfgName + ".xlsx")
 		f, err = excelize.OpenFile(path)
