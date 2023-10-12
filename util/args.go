@@ -16,7 +16,10 @@ func InitArgs() {
 	}
 	ExcelPath = os.Args[1]
 	ExportPath = os.Args[2]
-	IsNoBuild = os.Args[3]
+	lastArg := os.Args[len(os.Args)-1]
+	if lastArg != ExportPath {
+		IsNoBuild = lastArg
+	}
 	fmt.Println("ExcelPath", ExcelPath)
 	fmt.Println("ExportPath", ExportPath)
 	fmt.Println("IsNoBuild", IsNoBuild)
