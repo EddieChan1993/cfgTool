@@ -6,8 +6,9 @@ import (
 	"strings"
 )
 
-var ExportPath = "." //导出路径
-var ExcelPath = "."  //配置表路径
+var ExportPath = "."   //导出路径
+var ExcelPath = "."    //配置表路径
+var IsNoBuild = "true" //不参与编译
 
 func InitArgs() {
 	if len(os.Args) < 3 {
@@ -15,8 +16,10 @@ func InitArgs() {
 	}
 	ExcelPath = os.Args[1]
 	ExportPath = os.Args[2]
+	IsNoBuild = os.Args[3]
 	fmt.Println("ExcelPath", ExcelPath)
 	fmt.Println("ExportPath", ExportPath)
+	fmt.Println("IsNoBuild", IsNoBuild)
 }
 
 func PkgName() string {

@@ -26,11 +26,16 @@ func (c *CfgConst) Think(excelFileName string, f *excelize.File) (goFileName str
 	//覆盖写入
 	OSFile.Truncate(0)
 	n, _ := OSFile.Seek(0, 0)
-
-	pkgName := fmt.Sprintf("package %s\n", util.PkgName())
+	//文件头信息
+	pkgName := ""
+	if util.IsNoBuild != "true" {
+		pkgName = fmt.Sprintf("package %s\n", util.PkgName())
+	} else {
+		pkgName = fmt.Sprintf("//go:build !linux && !darwin && !windows\npackage %s\n", util.PkgName())
+	}
 	_, err = OSFile.WriteAt([]byte(pkgName), n)
 	n += int64(len([]byte(pkgName)))
-
+	//const变量声明
 	_, err = OSFile.WriteAt([]byte("const (\n"), n)
 	n += int64(len([]byte("const (\n")))
 	var msg string
