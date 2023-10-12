@@ -16,7 +16,7 @@ func InitArgs() {
 	ExcelPath = os.Args[1]
 	ExportPath = os.Args[2]
 	fmt.Println("ExcelPath", ExcelPath)
-	fmt.Println("ExportPath", ExcelPath)
+	fmt.Println("ExportPath", ExportPath)
 }
 
 func PkgName() string {
