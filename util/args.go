@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-var ExportPath = "."   //导出路径
-var ExcelPath = "."    //配置表路径
-var IsNoBuild = "true" //不参与编译
+var ExportPath = "."    //导出路径
+var ExcelPath = "."     //配置表路径
+var IsNoBuild = "false" //不参与编译
 
 func InitArgs() {
 	if len(os.Args) < 3 {
