@@ -40,7 +40,11 @@ func (c *CfgConst) Think(excelFileName string, f *excelize.File) (goFileName str
 	n += int64(len([]byte("const (\n")))
 	var msg string
 	for _, row := range rows[5:] {
-		msg = fmt.Sprintf("CST_%s=%s //%s %s\n", strings.ToUpper(strings.Replace(row[1], " ", "X", 1)), row[0], row[2], row[3])
+		if row[3] == "" {
+			msg = fmt.Sprintf("CST_%s=%s //%s %s\n", strings.ToUpper(strings.Replace(row[1], " ", "X", 1)), row[0], row[2], row[4])
+		} else {
+			msg = fmt.Sprintf("CST_%s=%s //%s %s\n", strings.ToUpper(strings.Replace(row[1], " ", "X", 1)), row[0], row[2], row[3])
+		}
 		_, err = OSFile.WriteAt([]byte(msg), n)
 		if err != nil {
 			panic(fmt.Sprintf("err %v msg %v", err, msg))
