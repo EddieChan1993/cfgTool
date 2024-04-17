@@ -39,7 +39,10 @@ func (c *CfgConst) Think(excelFileName string, f *excelize.File) (goFileName str
 	_, err = OSFile.WriteAt([]byte("const (\n"), n)
 	n += int64(len([]byte("const (\n")))
 	var msg string
-	for _, row := range rows[5:] {
+	for i, row := range rows[5:] {
+		if len(row) <= 3 {
+			panic(fmt.Sprintf("row %d format error %v", i+6, row))
+		}
 		if row[3] == "" {
 			msg = fmt.Sprintf("CST_%s=%s //%s %s\n", strings.ToUpper(strings.Replace(row[1], " ", "X", 1)), row[0], row[2], row[4])
 		} else {
